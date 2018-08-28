@@ -11,7 +11,7 @@ while rt != 0:
         if hit >= ken:
             rt = rt - 1
             ror = ror + 1
-            print("ken bla bla bla")
+            print("Ken: %d" %ken + " - %d" %hit + " = %d" %(ken - hit))
             hit = 0
             ryu = 50
             ken = 50
@@ -24,7 +24,7 @@ while rt != 0:
             rt = rt -1
             ror = ror +1
             if punch < 0:
-                print("ken bla bla bla")
+                print("Ken: %d" %ken + " - %d" %hit + " = %d" %(ken - hit))
             hit = 0
             ryu = 50
             ken = 50
@@ -34,12 +34,12 @@ while rt != 0:
             rt = rt - 1
             rok = rok + 1
             if punch > 0:
-                print("ryu bla bla bla")
+                print("Ryu: %d" %ryu + " - %d" %(-1 * hit) + " = %d" %(ryu + hit))
             hit = 0
             ryu = 50
             ken = 50
             if rok == 2:
-                print("ken venceu")
+                print("Ryu: %d" %ryu + " - %d" %(-1 * hit) + " = %d" %(ryu + hit))
         punch = int(input())
     if hit < 0:
         ryu = ryu + hit

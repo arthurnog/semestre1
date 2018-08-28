@@ -1,3 +1,5 @@
+#Arthur Lucas da Silva Nogueira
+#213293
 #  Funcao: removePalavras
 #
 #  Parametros:
@@ -12,7 +14,14 @@
 #   string s sem as palavras de vs.
 
 def removePalavras(s, vs):
-	return ''
+	s1 = s.split()
+	for i in range(len(vs)):
+		if vs[i] in s1:
+			while s1.count(vs[i]) != 0:
+				a = s1.index(vs[i])
+				del s1[a]
+	s = " ".join(s1)
+	return s
 
 #  Funcao: pagsResposta
 #
@@ -30,7 +39,22 @@ def removePalavras(s, vs):
 #   lista a ser preenchida como resposta, de dimensao numPag.
 
 def pagsResposta(palavrasPagina, termosBusca):
-	return []
+	resp = []
+	count = 0
+	numPag = len(palavrasPagina)
+	for i in range(numPag):
+		lis = palavrasPagina[i].split()
+		for j in range(len(termosBusca)):
+			flag = 0
+			if termosBusca[j] in lis and flag == 0:
+				count += 1
+				flag = 1
+		if count == len(termosBusca):
+			resp.append(1)
+		else:
+			resp.append(0)
+		count = 0
+	return resp
 
 
 #  Funcao: linksResposta
@@ -49,4 +73,12 @@ def pagsResposta(palavrasPagina, termosBusca):
 #   lista numLinks a ser preenchida como resposta, de tamanho numPag
 
 def linksResposta(links,resp):
-	return []
+	lis = [0 for i in range(len(links))]
+	for i in range(len(resp)):
+		if resp[i] == 1:
+			for j in range(len(links)):
+				if links[j][i] == 1 and resp[j] != 0:
+					lis[i] += 1
+		elif resp[i] == 0:
+			lis[i] -= 1
+	return lis

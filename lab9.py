@@ -9,6 +9,11 @@ lucro1 = []#possiveis lucros das vendas de acoes da empresa 1
 lucro2 = []#possiveis lucros das vendas de acoes da empresa 2
 lucro3 = []#possiveis lucros das vendas de acoes da empresa 3
 lucro4 = []#possiveis lucros das vendas de acoes da empresa 4
+lucro = 0
+lucro_total = 0#soma dos lucros gerados pelas vendas das empresas
+empresa = 0
+dia_venda = 0
+dia_compra = 0
 for i in range(d):#eu adiciono os valores das empresas em cada uma das listas
     e = float(input())
     E1.append(e)
@@ -21,35 +26,53 @@ for i in range(d):
 for i in range(d):
     e = float(input())
     E4.append(e)
-for i in range(len(E1)):#aqui eu avalio os possiveis lucros entre os dias de compra e venda da empresa 1
-    c1 = E1[i]
-    for j in range(len(E1)):
-        v1 = E1[j]
-        lucro = v1 - c1
-        if lucro > 0:
-            lucro1.append(lucro)
-for i in range(len(E1)):#aqui eu avalio os possiveis lucros entre os dias de compra e venda da empresa 2
+for i in range(d):#aqui eu armazeno os possiveis lucros entre os dias de compra e venda da empresa 1
+    c1 = E1[i]#valor de compra
+    for j in range(d):
+        v1 = E1[j]#valor de venda
+        if E1.index(v1) > E1.index(c1):
+            l = v1 - c1#calculo do lucro é feito apenas se a venda for feita em algum dia após a compra
+            lucro1.append(l)
+for i in range(d):#aqui eu armazeno os possiveis lucros entre os dias de compra e venda da empresa 2
     c2 = E2[i]
-    for j in range(len(E1)):
+    for j in range(d):
         v2 = E2[j]
-        lucro = v2 - c2
-        if lucro > 0:
-            lucro2.append(lucro)
-for i in range(len(E3)):#aqui eu avalio os possiveis lucros entre os dias de compra e venda da empresa 3
+        if E2.index(v2) > E2.index(c2):
+            l = v2 - c2
+            lucro2.append(l)
+for i in range(d):#aqui eu armazeno os possiveis lucros entre os dias de compra e venda da empresa 3
     c3 = E3[i]
-    for j in range(len(E3)):
+    for j in range(d):
         v3 = E3[j]
-        lucro = v3 - c3
-        if lucro > 0:
-            lucro3.append(lucro)
-for i in range(len(E4)):#aqui eu avalio os possiveis lucros entre os dias de compra e venda da empresa 4
+        if E3.index(v3) > E3.index(c3):
+            l = v3 - c3
+            lucro3.append(l)
+for i in range(d):#aqui eu armazeno os possiveis lucros entre os dias de compra e venda da empresa 4
     c4 = E4[i]
-    for j in range(len(E4)):
+    for j in range(d):
         v4 = E4[j]
-        lucro = v4 - c4
-        if lucro > 0:
-            lucro4.append(lucro)
+        if E4.index(v4) > E4.index(c4):
+            l = v4 - c4
+            lucro4.append(l)
+maiorlucro1 = max(lucro1)
+maiorlucro2 = max(lucro2)
+maiorlucro3 = max(lucro3)
+maiorlucro4 = max(lucro4)
+if maiorlucro1 > 0:
+    lucro_total += maiorlucro1
+if maiorlucro2 > 0:
+    lucro_total += maiorlucro2
+if maiorlucro3 > 0:
+    lucro_total += maiorlucro3
+if maiorlucro4 > 0:
+    lucro_total += maiorlucro4
+
 print(lucro1)
 print(lucro2)
 print(lucro3)
 print(lucro4)
+print(lucro_total)
+
+
+#print("acao %d: compra %d, venda %d, lucro %.2f" % (empresa, dia_compra, dia_venda, lucro))
+#print("Lucro: %.2f" % (lucro_total))

@@ -5,10 +5,13 @@
 '''
 #funcoes recursivas que encontram a palavra completa
 def busca2(matriz, pontos, palavra, i , j, ind):
+    print("lala")
     if ind == len(palavra):
         return True
+    print(palavra[ind],i+1)
     if palavra[ind] == matriz[i+1][j]:
         if busca2(matriz, pontos, palavra, i+1, j, ind+1) == True:
+            print("lala")
             pontos[i+1][j] = palavra[ind]
             return True
         else:
@@ -18,7 +21,7 @@ def busca3(matriz, pontos, palavra, i , j, ind):
     if ind == len(palavra):
         return True
     if palavra[ind] == matriz[i+1][j+1]:
-        if busca3(matriz, pontos, palavra, i+1, j+1, ind+1) == True:
+        if busca2(matriz, pontos, palavra, i+1, j+1, ind+1) == True:
             pontos[i+1][j+1] = palavra[ind]
             return True
         else:
@@ -28,7 +31,7 @@ def busca4(matriz, pontos, palavra, i , j, ind):
     if ind == len(palavra):
         return True
     if palavra[ind] == matriz[i][j+1]:
-        if busca4(matriz, pontos, palavra, i, j+1, ind+1) == True:
+        if busca2(matriz, pontos, palavra, i, j+1, ind+1) == True:
             pontos[i][j+1] = palavra[ind]
             return True
         else:
@@ -38,7 +41,7 @@ def busca5(matriz, pontos, palavra, i , j, ind):
     if ind == len(palavra):
         return True
     if palavra[ind] == matriz[i-1][j+1]:
-        if busca5(matriz, pontos, palavra, i-1, j+1, ind+1) == True:
+        if busca2(matriz, pontos, palavra, i-1, j+1, ind+1) == True:
             pontos[i-1][j+1] = palavra[ind]
             return True
         else:
@@ -48,7 +51,7 @@ def busca6(matriz, pontos, palavra, i , j, ind):
     if ind == len(palavra):
         return True
     if palavra[ind] == matriz[i-1][j]:
-        if busca6(matriz, pontos, palavra, i-1, j, ind+1) == True:
+        if busca2(matriz, pontos, palavra, i-1, j, ind+1) == True:
             pontos[i-1][j] = palavra[ind]
             return True
         else:
@@ -58,7 +61,7 @@ def busca7(matriz, pontos, palavra, i , j, ind):
     if ind == len(palavra):
         return True
     if palavra[ind] == matriz[i-1][j-1]:
-        if busca7(matriz, pontos, palavra, i-1, j-1, ind+1) == True:
+        if busca2(matriz, pontos, palavra, i-1, j-1, ind+1) == True:
             pontos[i-1][j-1] = palavra[ind]
             return True
         else:
@@ -68,7 +71,7 @@ def busca8(matriz, pontos, palavra, i , j, ind):
     if ind == len(palavra):
         return True
     if palavra[ind] == matriz[i][j-1]:
-        if busca8(matriz, pontos, palavra, i, j-1, ind+1) == True:
+        if busca2(matriz, pontos, palavra, i, j-1, ind+1) == True:
             pontos[i][j-1] = palavra[ind]
             return True
         else:
@@ -78,7 +81,7 @@ def busca9(matriz, pontos, palavra, i , j, ind):
     if ind == len(palavra):
         return True
     if palavra[ind] == matriz[i+1][j-1]:
-        if busca9(matriz, pontos, palavra, i+1, j-1, ind+1) == True:
+        if busca2(matriz, pontos, palavra, i+1, j-1, ind+1) == True:
             pontos[i+1][j-1] = palavra[ind]
             return True
         else:
@@ -86,21 +89,22 @@ def busca9(matriz, pontos, palavra, i , j, ind):
 
 #funcao de buscar palavras na matriz
 def busca(matriz, pontos, palavra):
-    status = False
+    status=False
     for i in range(len(matriz)):
         for j in range(len(matriz[0])):
             if palavra[0] == matriz[i][j]:
                 if busca2(matriz, pontos, palavra, i, j, 1) or busca3(matriz, pontos, palavra, i, j, 1) or busca4(matriz, pontos, palavra, i, j, 1) or busca5(matriz, pontos, palavra, i, j, 1) or busca6(matriz, pontos, palavra, i, j, 1) or busca7(matriz, pontos, palavra, i, j, 1) or busca8(matriz, pontos, palavra, i, j, 1) or busca9(matriz, pontos, palavra, i, j, 1):
+                    print("lili")
                     pontos[i][j] = palavra[0]
-                    status = True
+                    status= True
                 else:
-                    status = False
+                    status= False
             else:
-                status = False
+                status= False
     return status
 
 #le matriz
-l = "awsd"
+l = "lala"
 pos = 0
 matriz = []
 resultado_final = []
@@ -116,7 +120,7 @@ while l.isdigit() == False:
 matriz.append([0]*len(matriz[0]))
 matriz.insert(0,[0]*len(matriz[0]))
 
-#numero de palavras
+# busca as palavras
 if l.isdigit() == True:
     n = int(l)
 #matriz de pontos

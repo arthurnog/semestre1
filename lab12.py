@@ -28,11 +28,12 @@ def atualiza_posicao(l, a, x, desl, rot):
     if rot == 0:
         a = a1
         l = l1
-    x = x + desl
-    if x < 0:
+    if desl < -1*x:
         x = 0
-    if x > 10 - l:
-        x = 10 - l
+    if desl > 10 - (x+l):
+        x = 10
+    if desl >= -1*x and desl <= 10 - (x+l):
+        x = x + desl
     return l, a, x
 
 # Funcao: encontra_y
@@ -48,10 +49,23 @@ def atualiza_posicao(l, a, x, desl, rot):
 #
 def encontra_y(matriz, l, x):
     y = 0
+    c = 0
     for j in range(10):
-        for i in range(x, x+l):
-            if matriz[j][i] == 1:
-                y = j + 1
+        if x+l <= 10:
+            for i in range(x, x+l):
+                if matriz[j][i] == 1:
+                    c = c + 1
+                if c == l:
+                    y = y +1
+                    c = 0
+        else:
+            for i in range(x, 10):
+                if matriz[j][i] == 1:
+                    c = c + 1
+                if c == l:
+                    y = y +1
+                    c = 0
+
     return y
 
 # Funcoes: posicao_final_valida
@@ -64,7 +78,7 @@ def encontra_y(matriz, l, x):
 #   1 se o bloco naquela posicao estiver contido dentro do tabuleiro, ou 0 caso contrario.
 #
 def posicao_final_valida(a, y):
-    if a > 10 - y:
+    if a >= 10 - y:
         return 0
     else:
         return 1
@@ -82,7 +96,7 @@ def posicao_final_valida(a, y):
 #   NULL
 #
 def posiciona_bloco(matriz, l, a, x, y):
-    if x + l >= 10:
+    if x + l > 10:
         x = 10 - l
     for i in range(x, x+l):
         if y+a <= 10:

@@ -60,3 +60,4 @@ if __name__ == "__main__" :
 			print("Pagina %d: nao encontrado" %p)
 		else:
 			print("Pagina %d: encontrado/%d links" %(p,numeroLinksPorPagina[p]))
+			
